@@ -1,4 +1,4 @@
-<%= form_for(@question) do |f| %>
+<%= simple_form_for(@question) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -10,7 +10,19 @@
       </ul>
     </div>
   <% end %>
+<div class="category-imput">
+  <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
+</div>
 
+<div class="title-imput">
+  <%=f.input :title, label:"what is the title of the question", autofocus: true %>
+</div>
+<div class="difficulties-imput">
+  <%=f.input :difficulties, label:"what is the difficulties of the question", autofocus: true, collection: ["300-500","500-600","600-700","700-800"]   %>
+</div>
+<div class="text-imput">
+  <%=f.input :content, label:"what is the content of the question", autofocus: true, as: :text %>
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>
