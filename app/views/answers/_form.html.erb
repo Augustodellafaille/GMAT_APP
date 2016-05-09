@@ -1,0 +1,24 @@
+<%= simple_form_for([question, answer]) do |f| %>
+  <% if @answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+      <% @answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="answer1-imput">
+  <%=f.association :question %>
+  <%=f.input :answer1 %><%=f.input :corr1 %>
+  <%=f.input :answer2 %><%=f.input :corr2 %>
+  <%=f.input :answer3 %><%=f.input :corr3 %>
+  <%=f.input :answer4 %><%=f.input :corr4 %>
+  <%=f.input :answer5 %><%=f.input :corr5 %>
+</div>
+  <div class="actions">
+    <%= f.submit  %>
+  </div>
+<% end %>

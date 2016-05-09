@@ -1,3 +1,4 @@
+
 <%= simple_form_for(@question) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
@@ -13,17 +14,22 @@
 <div class="category-imput">
   <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
 </div>
-
+<br>
 <div class="title-imput">
   <%=f.input :title, label:"what is the title of the question", autofocus: true %>
 </div>
+<br>
 <div class="difficulties-imput">
   <%=f.input :difficulties, label:"what is the difficulties of the question", autofocus: true, collection: ["300-500","500-600","600-700","700-800"]   %>
 </div>
+<br>
 <div class="text-imput">
   <%=f.input :content, label:"what is the content of the question", autofocus: true, as: :text %>
 </div>
+<br>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit  %>
   </div>
 <% end %>
+
