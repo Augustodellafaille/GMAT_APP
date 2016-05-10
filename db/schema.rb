@@ -11,28 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509155902) do
+ActiveRecord::Schema.define(version: 20160510120421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "answers", force: :cascade do |t|
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "answer1"
-    t.boolean  "corr1"
-    t.string   "answer2"
-    t.boolean  "corr2"
-    t.string   "answer3"
-    t.boolean  "corr3"
-    t.string   "answer4"
-    t.boolean  "corr4"
-    t.string   "answer5"
-    t.boolean  "corr5"
-  end
-
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -42,7 +24,16 @@ ActiveRecord::Schema.define(version: 20160509155902) do
     t.string   "title"
     t.string   "difficulties"
     t.string   "category"
+    t.string   "answer_1"
+    t.boolean  "corr_1"
+    t.string   "answer_2"
+    t.boolean  "corr_2"
+    t.string   "answer_3"
+    t.boolean  "corr_3"
+    t.string   "answer_4"
+    t.boolean  "corr_4"
+    t.string   "answer_5"
+    t.boolean  "corr_5"
   end
 
-  add_foreign_key "answers", "questions"
 end

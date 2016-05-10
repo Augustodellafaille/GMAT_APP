@@ -3,8 +3,13 @@
 <p><%= @question.title %></p>
 <h1>Content</h1>
 <p><%= @question.content %></p>
-
-
+<h1>Possible Answer</h1>
+<p>A. <%= @question.answer_1 %></p>
+<p>B. <%= @question.answer_2 %></p>
+<p>C. <%= @question.answer_3 %></p>
+<p>D. <%= @question.answer_4 %></p>
+<p>E. <%= @question.answer_5 %></p>
+<br>
 
 
 <%= link_to 'Edit question', edit_question_path(@question) %> |

@@ -12,7 +12,6 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     # @answer = Answer.find(params[:id])
-
   end
 
   # GET /questions/new
@@ -28,7 +27,6 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
@@ -62,13 +60,6 @@ class QuestionsController < ApplicationController
         format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
         format.json { head :no_content }
       end
-    else
-      @question.destroy
-        respond_to do |format|
-         format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-          format.json { head :no_content }
-       end
-    end
   end
 
   private
@@ -79,6 +70,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title,:difficulties,:content,:category)
+      params.require(:question).permit(:title,:difficulties,:content,:category, :answer_1,:corr_1, :answer_2,:corr_2,:answer_3,:corr_3, :answer_4, :corr_4,:answer_5, :corr_5)
     end
 end
+
