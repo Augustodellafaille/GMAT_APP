@@ -18,8 +18,6 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    @answer = Answer.new
-
   end
 
   # GET /questions/1/edit
@@ -59,8 +57,6 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    if @answer
-      @answer.find(params[:answer_id])
       @question.destroy
       respond_to do |format|
         format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
