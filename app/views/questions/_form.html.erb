@@ -12,7 +12,7 @@
     </div>
   <% end %>
 <div class="category-imput">
-  <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
+  <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem Solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
 </div>
 <br>
 <div class="title-imput">
@@ -30,7 +30,7 @@
 <br>
 <h1>Possible Answers</h1>
 <div class="Answer-imput">
-  <% if @question.category == "Data Sufficiency" %>
+  <%if @question.is_data_sufficiency? %>
     <%=f.input :answer_1, input_html: {value: "statement (1) BY ITSELF is sufficient, but statement (2) by itself is not."} %>
     <% @question.answer_1 = "statement (1) BY ITSELF is sufficient, but statement (2) by itself is not." %>
   <%else%>
@@ -39,7 +39,7 @@
   <%=f.input :corr_1 %>
 </div>
 <div class="Answer-imput">
- <% if @question.category == "Data Sufficiency" %>
+ <% if @question.is_data_sufficiency? %>
     <%=f.input :answer_2, input_html: {value: "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not."} %>
     <% @question.answer_2 = "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not." %>
   <%else%>
@@ -48,7 +48,7 @@
   <%=f.input :corr_2 %>
 </div>
 <div class="Answer-imput">
-  <% if @question.category == "Data Sufficiency" %>
+  <% if @question.is_data_sufficiency? %>
     <%=f.input :answer_3, input_html: {value: "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient"} %>
     <% @question.answer_3 = "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient" %>
   <%else%>
@@ -57,7 +57,7 @@
   <%=f.input :corr_3 %>
 </div>
 <div class="Answer-imput">
-  <% if @question.category == "Data Sufficiency" %>
+  <% if  @question.is_data_sufficiency? %>
     <%=f.input :answer_4, input_html: {value: "EACH statement BY ITSELF is sufficient"} %>
     <% @question.answer_4 = "EACH statement BY ITSELF is sufficient" %>
   <%else%>
@@ -66,7 +66,7 @@
   <%=f.input :corr_4 %>
 </div>
 <div class="Answer-imput">
-  <% if @question.category == "Data Sufficiency" %>
+  <% if @question.is_data_sufficiency? %>
     <%=f.input :answer_5, input_html: {value: "NEITHER statement is sufficient BY ITSELF or COMBINED"} %>
     <% @question.answer_5 = "NEITHER statement is sufficient BY ITSELF or COMBINED" %>
   <%else%>
