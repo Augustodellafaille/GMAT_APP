@@ -11,13 +11,14 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @question = Question.find(params[:id])
-    @answer = Answer.new
+    # @answer = Answer.find(params[:id])
 
   end
 
   # GET /questions/new
   def new
     @question = Question.new
+    @answer = Answer.new
 
   end
 
@@ -58,10 +59,19 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    @question.destroy
-    respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-      format.json { head :no_content }
+    if @answer
+      @answer.find(params[:answer_id])
+      @question.destroy
+      respond_to do |format|
+        format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      @question.destroy
+        respond_to do |format|
+         format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+          format.json { head :no_content }
+       end
     end
   end
 

@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
-  # before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
   def index
      @answers = Answer.all
   end
@@ -8,10 +9,13 @@ class AnswersController < ApplicationController
   end
 
   def new
+    @question = Question.find(params[:question_id])
     @answer = Answer.new
   end
 
   def edit
+    @question = Question.find(params[:id])
+    # @answer = Answer.find(params[:id])
   end
 
   def create
@@ -31,6 +35,8 @@ class AnswersController < ApplicationController
   end
 
   def update
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(answer_params)
     respond_to do |format|
       if @answer.update(answer_params)
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
@@ -58,7 +64,7 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:text,:correct,:answer1,:answer2,:answer3,:answer4,:answer5,:corr1,:corr2,:corr3, :corr4, :corr5,:question_id)
+      params.require(:answer).permit(:text,:correct,:answer1,:answer2,:answer3,:answer4,:answer5,:corr1,:corr2,:corr3, :corr4, :corr5,:question_id,:id)
     end
 end
 
