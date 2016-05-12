@@ -26,10 +26,11 @@
 <div class="content-imput">
   <%=f.input :content, label:"what is the content of the question", autofocus: true, as: :text %>
 </div>
-<div class="text-imput">
-  <p>Put your text here</p>
-  <%= f.file_field :text %>
-</div>
+<% if @question.is_reading_comprehension?%>
+  <div class="text-imput">
+    <%= f.input :text, as: :text, autofocus: true, label:"What is the text to read" %>
+  </div>
+<%end%>
 <br>
 <br>
 <h1>Possible Answers</h1>
