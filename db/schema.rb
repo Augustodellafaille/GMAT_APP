@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510120421) do
+ActiveRecord::Schema.define(version: 20160512090326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "questions", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "content"
     t.string   "text"
     t.string   "title"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20160510120421) do
     t.boolean  "corr_4"
     t.string   "answer_5"
     t.boolean  "corr_5"
+    t.string   "sc_part_1"
+    t.string   "sc_underline_part"
+    t.string   "sc_part_2"
   end
 
 end

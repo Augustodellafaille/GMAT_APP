@@ -7,4 +7,7 @@ class Question < ActiveRecord::Base
   def is_reading_comprehension?
     category == "Reading Comprehension"
   end
+  def is_sentence_correction?
+  	category =="Sentence Correction"
+  end
 end

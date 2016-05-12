@@ -1,88 +1,95 @@
 
 <%= simple_form_for(@question) do |f| %>
-  <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @question.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+        <ul>
+          <% @question.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="category-imput">
+      <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem Solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
     </div>
-  <% end %>
-<div class="category-imput">
-  <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem Solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
-</div>
-<br>
-<div class="title-imput">
-  <%=f.input :title, label:"what is the title of the question", autofocus: true %>
-</div>
-<br>
-<div class="difficulties-imput">
-  <%=f.input :difficulties, label:"what is the difficulties of the question", autofocus: true, collection: ["300-500","500-600","600-700","700-800"]   %>
-</div>
-<br>
-<div class="content-imput">
-  <%=f.input :content, label:"what is the content of the question", autofocus: true, as: :text %>
-</div>
-<% if @question.is_reading_comprehension?%>
-  <div class="text-imput">
-    <%= f.input :text, as: :text, autofocus: true, label:"What is the text to read" %>
-  </div>
-<%end%>
-<br>
-<br>
-<h1>Possible Answers</h1>
-<div class="Answer-imput">
-  <%if @question.is_data_sufficiency? %>
-    <%=f.input :answer_1, input_html: {value: "statement (1) BY ITSELF is sufficient, but statement (2) by itself is not."} %>
-    <% @question.answer_1 = "statement (1) BY ITSELF is sufficient, but statement (2) by itself is not." %>
-  <%else%>
-    <%=f.input :answer_1, autofocus: true, as: :text %>
-  <%end%>
-  <%=f.input :corr_1 %>
-</div>
-<div class="Answer-imput">
- <% if @question.is_data_sufficiency? %>
-    <%=f.input :answer_2, input_html: {value: "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not."} %>
-    <% @question.answer_2 = "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not." %>
-  <%else%>
-    <%=f.input :answer_2, autofocus: true, as: :text %>
-  <%end%>
-  <%=f.input :corr_2 %>
-</div>
-<div class="Answer-imput">
-  <% if @question.is_data_sufficiency? %>
-    <%=f.input :answer_3, input_html: {value: "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient"} %>
-    <% @question.answer_3 = "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient" %>
-  <%else%>
-    <%=f.input :answer_3, autofocus: true, as: :text %>
-  <%end%>
-  <%=f.input :corr_3 %>
-</div>
-<div class="Answer-imput">
-  <% if  @question.is_data_sufficiency? %>
-    <%=f.input :answer_4, input_html: {value: "EACH statement BY ITSELF is sufficient"} %>
-    <% @question.answer_4 = "EACH statement BY ITSELF is sufficient" %>
-  <%else%>
-    <%=f.input :answer_4, autofocus: true, as: :text %>
-  <%end%>
-  <%=f.input :corr_4 %>
-</div>
-<div class="Answer-imput">
-  <% if @question.is_data_sufficiency? %>
-    <%=f.input :answer_5, input_html: {value: "NEITHER statement is sufficient BY ITSELF or COMBINED"} %>
-    <% @question.answer_5 = "NEITHER statement is sufficient BY ITSELF or COMBINED" %>
-  <%else%>
-    <%=f.input :answer_5, autofocus: true, as: :text %>
-  <%end%>
-  <%=f.input :corr_5 %>
-</div>
-<br>
+    <br>
+    <div class="title-imput">
+      <%=f.input :title, label:"what is the title of the question", autofocus: true %>
+    </div>
+    <br>
+    <div class="difficulties-imput">
+      <%=f.input :difficulties, label:"what is the difficulties of the question", autofocus: true, collection: ["300-500","500-600","600-700","700-800"]   %>
+    </div>
+    <br>
+      <% if @question.is_sentence_correction?%>
+        <div class="sent-cor-imput">
+        <%=f.input :sc_part_1, label:"begining part of the passage", autofocus: true, as: :text %>
+        <%=f.input :sc_underline_part, label:"what is the sentense/passage to correct", autofocus: true, as: :text %>
+        <%=f.input :sc_part_2, label:"ending part of the passage", autofocus: true %>
+        </div>
+      <%else%>
+        <div class="content-imput">
+          <%=f.input :content, label:"what is the content of the question", autofocus: true, as: :text %>
+        </div>
+      <%end%>
+    <% if @question.is_reading_comprehension?%>
+      <div class="text-imput">
+        <%= f.input :text, as: :text, autofocus: true, label:"What is the text to read" %>
+      </div>
+    <%end%>
+    <br>
+    <br>
+    <h1>Possible Answers</h1>
+    <div class="Answer-imput">
+      <%if @question.is_data_sufficiency? %>
+        <%=f.input :answer_1, input_html: {value: "statement (1) BY ITSELF is sufficient, but statement (2) by itself is not."} %>
+        <% @question.answer_1 = "statement (1) BY ITSELF is sufficient, but statement (2) by itself is not." %>
+      <%else%>
+        <%=f.input :answer_1, autofocus: true, as: :text %>
+      <%end%>
+      <%=f.input :corr_1 %>
+    </div>
+    <div class="Answer-imput">
+     <% if @question.is_data_sufficiency? %>
+        <%=f.input :answer_2, input_html: {value: "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not."} %>
+        <% @question.answer_2 = "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not." %>
+      <%else%>
+        <%=f.input :answer_2, autofocus: true, as: :text %>
+      <%end%>
+      <%=f.input :corr_2 %>
+    </div>
+    <div class="Answer-imput">
+      <% if @question.is_data_sufficiency? %>
+        <%=f.input :answer_3, input_html: {value: "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient"} %>
+        <% @question.answer_3 = "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient" %>
+      <%else%>
+        <%=f.input :answer_3, autofocus: true, as: :text %>
+      <%end%>
+      <%=f.input :corr_3 %>
+    </div>
+    <div class="Answer-imput">
+      <% if  @question.is_data_sufficiency? %>
+        <%=f.input :answer_4, input_html: {value: "EACH statement BY ITSELF is sufficient"} %>
+        <% @question.answer_4 = "EACH statement BY ITSELF is sufficient" %>
+      <%else%>
+        <%=f.input :answer_4, autofocus: true, as: :text %>
+      <%end%>
+      <%=f.input :corr_4 %>
+    </div>
+    <div class="Answer-imput">
+      <% if @question.is_data_sufficiency? %>
+        <%=f.input :answer_5, input_html: {value: "NEITHER statement is sufficient BY ITSELF or COMBINED"} %>
+        <% @question.answer_5 = "NEITHER statement is sufficient BY ITSELF or COMBINED" %>
+      <%else%>
+        <%=f.input :answer_5, autofocus: true, as: :text %>
+      <%end%>
+      <%=f.input :corr_5 %>
+    </div>
+    <br>
 
-  <div class="actions">
-    <%= f.submit  %>
-  </div>
-<% end %>
+      <div class="actions">
+        <%= f.submit  %>
+      </div>
+    <% end %>
 

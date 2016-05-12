@@ -2,7 +2,14 @@
 <h1>Title</h1>
 <p><%= @question.title %></p>
 <h1>Content</h1>
-<p><%= @question.content %></p>
+
+<p>
+	<% if @question.is_sentence_correction? %>
+		<%= @question.sc_part_1%> <u><%=@question.sc_underline_part%></u> <%= @question.sc_part_2 %>
+	<% else%>	
+		<%= @question.content %>
+	<%end%>
+</p>
 <p><%= @question.text %></p>
 <h1>Possible Answer</h1>
 <p>A. <%= @question.answer_1 %></p>
