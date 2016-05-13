@@ -16,3 +16,12 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+$(document).ready(function(){
+	console.log('hello');
+	$('#question_category').on('change', function() {
+		console.log('in first');
+    $('#section').removeClass('active');
+    $('#'+$(this).val()).addClass('active');
+  });
+
+});

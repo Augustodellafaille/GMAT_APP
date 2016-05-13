@@ -11,7 +11,7 @@
       </div>
     <% end %>
     <div class="category-imput">
-      <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem Solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"] %>
+      <%=f.input :category, label:"what is the category of the question", autofocus: true, collection: ["Problem Solving","Data Sufficiency","Critical Reasoning","Reading Comprehension", "Sentence Correction"],input_html: {id: 'question_category'}  %>
     </div>
     <br>
     <div class="title-imput">
@@ -22,14 +22,15 @@
       <%=f.input :difficulties, label:"what is the difficulties of the question", autofocus: true, collection: ["300-500","500-600","600-700","700-800"]   %>
     </div>
     <br>
+
       <% if @question.is_sentence_correction?%>
-        <div class="sent-cor-imput">
+      <div id="sent-cor-imput" >
         <%=f.input :sc_part_1, label:"begining part of the passage", autofocus: true, as: :text %>
         <%=f.input :sc_underline_part, label:"what is the sentense/passage to correct", autofocus: true, as: :text %>
         <%=f.input :sc_part_2, label:"ending part of the passage", autofocus: true %>
         </div>
       <%else%>
-        <div class="content-imput">
+        <div id="content-imput" class="section">
           <%=f.input :content, label:"what is the content of the question", autofocus: true, as: :text %>
         </div>
       <%end%>
