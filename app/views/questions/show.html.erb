@@ -6,8 +6,11 @@
 <p>
 	<% if @question.is_sentence_correction? %>
 		<%= @question.sc_part_1%> <u><%=@question.sc_underline_part%></u> <%= @question.sc_part_2 %>
+	<%elsif @question.is_data_sufficiency? %>
+		<p>1)<%=@question.ds_1%></p>
+		<p>2)<%=@question.ds_2%></p>	
 	<% else%>	
-		<%= @question.content %>
+		<p><%= @question.content %></p>
 	<%end%>
 </p>
 <p><%= @question.text %></p>

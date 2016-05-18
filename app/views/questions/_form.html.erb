@@ -22,7 +22,7 @@
       <%=f.input :difficulties, label:"what is the difficulties of the question", autofocus: true, collection: ["300-500","500-600","600-700","700-800"]   %>
     </div>
     <br>
-
+    <br>
       <% if @question.is_sentence_correction?%>
       <div id="sent-cor-imput string"  >
         <%=f.input :sc_part_1, label:"begining part of the passage", autofocus: true, as: :text %>
@@ -39,8 +39,15 @@
         <%= f.input :text, as: :text, autofocus: true, label:"What is the text to read" %>
       </div>
     <%end%>
+    <% if @question.is_data_sufficiency?%>
+      <div class="string">
+        <%= f.input :ds_1, autofocus: true, label: "what is the first sentence" %>
+        <%= f.input :ds_2, autofocus: true, label: "what is the secon sentence" %>
+      </div>
+    <%end%>
     <br>
     <br>
+
     <h1>Possible Answers</h1>
     <div class="answer-imput string">
       <%if @question.is_data_sufficiency? %>
@@ -50,49 +57,47 @@
       <%else%>
       <div class="answer-imput string">
         <%=f.input :answer_1, autofocus: true, as: :text %>
-      </div>
       <%end%>
       <%=f.input :corr_1 %>
- 
-      <div class="answer-imput string">
      <% if @question.is_data_sufficiency? %>
-        <%=f.input :answer_2, input_html: {value: "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not."} %>
+        <%=f.input :answer_2, input_html: {value: "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not."}%>
         <% @question.answer_2 = "statement (2) BY ITSELF is sufficient, but statement (1) by itself is not." %>
-    </div>
       <%else%>
-    <div class="answer-imput string">
         <%=f.input :answer_2, autofocus: true, as: :text %>
       <%end%>
-    </div>
       <%=f.input :corr_2 %>
-   
-    <div class="answer-imput string">
+
       <% if @question.is_data_sufficiency? %>
         <%=f.input :answer_3, input_html: {value: "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient"} %>
         <% @question.answer_3 = "neither statement BY ITSELF is sufficient but the two statements COMBINED are sufficient" %>
-    </div>
       <%else%>
-      <div class="answer-imput string">
+      
         <%=f.input :answer_3, autofocus: true, as: :text %>
-      </div>
+     
       <%end%>
       <%=f.input :corr_3 %>
 
-    <div class="answer-imput string">
+  
       <% if  @question.is_data_sufficiency? %>
         <%=f.input :answer_4, input_html: {value: "EACH statement BY ITSELF is sufficient"} %>
         <% @question.answer_4 = "EACH statement BY ITSELF is sufficient" %>
+   
       <%else%>
+   
         <%=f.input :answer_4, autofocus: true, as: :text %>
+      
       <%end%>
       <%=f.input :corr_4 %>
-    </div>
-    <div class="answer-imput string">
+  
+    
       <% if @question.is_data_sufficiency? %>
         <%=f.input :answer_5, input_html: {value: "NEITHER statement is sufficient BY ITSELF or COMBINED"} %>
         <% @question.answer_5 = "NEITHER statement is sufficient BY ITSELF or COMBINED" %>
+   
       <%else%>
+    
         <%=f.input :answer_5, autofocus: true, as: :text %>
+      </div>
       <%end%>
       <%=f.input :corr_5 %>
     </div>
