@@ -10,6 +10,7 @@ class TestsController < ApplicationController
 
   def new
     @test = Test.new
+    @question = Question.all 
   end
 
   def edit
@@ -17,7 +18,7 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.new(test_params)
-    @question = Question.find(params[:id])
+    @question = Question.find(question_params)
   end
 
   def update
@@ -29,14 +30,29 @@ class TestsController < ApplicationController
   private
 
     def test_params
-      params.require(:test).permit(:question_id,:question_total,:question_right,:question_wrong,:us_answer1,:us_answer2,:us_answer3,:us_answer4,:us_answer5)
+      params.require(:test).permit(:question_total,
+        :question_right,
+        :question_wrong,
+        :us_answer1,
+        :us_answer2,
+        :us_answer3,
+        :us_answer4,
+        :us_answer5)
+    end
+    def question_params
+      params.require(:question).permit(:title,
+        :difficulties,
+        :content,
+        :category,
+        :text,
+        :answer_1,:corr_1, 
+        :answer_2,:corr_2,
+        :answer_3,:corr_3, 
+        :answer_4, :corr_4,
+        :answer_5, :corr_5,
+        :sc_part_1, 
+        :sc_underline_part,
+        :sc_part_2, 
+        :ds_1, :ds_2)
     end
 end
- # t.boolean  "us_answer1"
- #    t.boolean  "us_answer2"
- #    t.boolean  "us_answer3"
- #    t.boolean  "us_answer4"
- #    t.boolean  "us_answer5
- #     t.string   "question_total"
- #    t.string   "question_right"
- #    t.string   "question_wrong"
