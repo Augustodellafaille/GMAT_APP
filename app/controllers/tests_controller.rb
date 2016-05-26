@@ -11,7 +11,7 @@ class TestsController < ApplicationController
   def new
     @test = Test.new
     @question = Question.all
-    @fquestion = Question.find_by difficulties: "medium"
+    @fquestion = Question.very_hard.ds.sample
     # @fquestion.first_random 
    # @fquestion = Question.find_each difficulties: "500-600" 
   end
@@ -32,7 +32,8 @@ class TestsController < ApplicationController
   end
 
   private
-
+    def test_process
+    end
     def test_params
       params.require(:test).permit(:question_total,
         :question_right,
