@@ -10,9 +10,9 @@
       </div>
     <% end %> 
     <%=@fquestion.content %>
-    <%=f.input :us_answer1, label: false%>
-    <%=f.input :us_answer2, label: false%>
-    <%=f.input :us_answer3, label: false%>
-    <%=f.input :us_answer4, label: false%>
-    <%=f.input :us_answer5, label: false%>
+    <%=f.input :us_answer1, label: false%> <%=@fquestion.answer_1 %>
+    <%=f.input :us_answer2, label: false%><%=@fquestion.answer_2 %>
+    <%=f.input :us_answer3, label: false%><%=@fquestion.answer_3 %>
+    <%=f.input :us_answer4, label: false%><%=@fquestion.answer_4 %>
+    <%=f.input :us_answer5, label: false%><%=@fquestion.answer_5 %>
   <% end %>

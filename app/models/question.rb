@@ -1,8 +1,8 @@
 class Question < ActiveRecord::Base
   has_many :question_tests 
   has_many :tests, :through => :question_tests
-  # enum category: %w(Problem_Solving Data_Sufficiency Critical_Reasoning Reading_Comprehension Sentence_Correction)
-
+  enum category: [:ps, :ds, :cr, :rc, :sc]
+  enum difficulties: [:easy, :medium, :hard, :very_hard]
   def is_data_sufficiency?
     category == "Data Sufficiency"
   end

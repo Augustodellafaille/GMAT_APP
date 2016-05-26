@@ -12,11 +12,11 @@
     <% end %>
     <div class="category-imput collection string">
     
-      <%=f.input :category,collection: ["Problem Solving","Data Sufficiency","Critical Reasoning","Reading Comprehension","Sentence Correction"],label:"what is the category of the question" %>
+      <%=f.input :category,collection: ["ps","ds","cr","rc","sc"],label:"what is the category of the question" %>
     <br>
       <%=f.input :title, label:"what is the title of the question"%>
     <br>
-      <%=f.input :difficulties, collection: ["300-500","500-600","600-700","700-800"], label: "what is the difficulties of the question"  %>
+      <%=f.input :difficulties, collection: ["easy","medium","hard","very hard"], label: "what is the difficulties of the question"  %>
     
     <br>
     <% if @question.is_sentence_correction?%>

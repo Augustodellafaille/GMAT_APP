@@ -11,16 +11,18 @@ class TestsController < ApplicationController
   def new
     @test = Test.new
     @question = Question.all
-    @fquestion = Question.find_by difficulties: "500-600" 
+    @fquestion = Question.find_by difficulties: "medium"
+    # @fquestion.first_random 
+   # @fquestion = Question.find_each difficulties: "500-600" 
   end
 
   def edit
   end
 
   def create
-    @test = Test.new(test_params)
-    @question = Question.find(question_params)
-    @fquestion = Question.find_by difficulties: "500-600"
+    # @test = Test.new(test_params)
+    # @question = Question.find(question_params)
+    # @fquestion
   end
 
   def update

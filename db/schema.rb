@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20160524141727) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "content"
     t.string   "text"
     t.string   "title"
-    t.string   "difficulties"
-    t.string   "category"
+    t.integer  "difficulties",      default: 0
+    t.integer  "category",          default: 0
     t.string   "answer_1"
     t.boolean  "corr_1"
     t.string   "answer_2"
