@@ -10,7 +10,8 @@ class TestsController < ApplicationController
 
   def new
     @test = Test.new
-    @question = Question.all 
+    @question = Question.all
+    @fquestion = Question.find_by difficulties: "500-600" 
   end
 
   def edit
@@ -19,6 +20,7 @@ class TestsController < ApplicationController
   def create
     @test = Test.new(test_params)
     @question = Question.find(question_params)
+    @fquestion = Question.find_by difficulties: "500-600"
   end
 
   def update
@@ -39,6 +41,7 @@ class TestsController < ApplicationController
         :us_answer4,
         :us_answer5)
     end
+
     def question_params
       params.require(:question).permit(:title,
         :difficulties,
@@ -56,3 +59,4 @@ class TestsController < ApplicationController
         :ds_1, :ds_2)
     end
 end
+
