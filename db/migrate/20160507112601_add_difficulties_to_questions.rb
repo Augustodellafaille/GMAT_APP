@@ -1,5 +1,5 @@
 class AddDifficultiesToQuestions < ActiveRecord::Migration
   def change
-    add_column :questions, :difficulties, :integer, default: 0
+    add_column :questions, :difficulties, :integer,
   end
 end
