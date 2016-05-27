@@ -4,12 +4,12 @@ class Question < ActiveRecord::Base
   enum category: [:ps, :ds, :cr, :rc, :sc]
   enum difficulties: [:easy, :medium, :hard, :very_hard]
   def is_data_sufficiency?
-    category == "Data Sufficiency"
+    category == "ds"
   end
   def is_reading_comprehension?
-    category == "Reading Comprehension"
+    category == "rc"
   end
   def is_sentence_correction?
-  	category =="Sentence Correction"
+  	category =="sc"
   end
 end
