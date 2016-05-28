@@ -10,17 +10,17 @@ class TestsController < ApplicationController
 
   def new
     @test = Test.new
-    @question = Question.all
-    @fquestion = Question.very_hard.ds.sample
-    # @fquestion.first_random 
-   # @fquestion = Question.find_each difficulties: "500-600" 
+    # @question = Question.all
+    # @fquestion = Question.middle.ds.sample
+    # @fquestion = Question.medium.sample
+     @fquestion = Question.find_by(test_process)
   end
 
   def edit
   end
 
   def create
-    # @test = Test.new(test_params)
+    @test = Test.new(test_params)
     # @question = Question.find(question_params)
     # @fquestion
   end
@@ -33,7 +33,34 @@ class TestsController < ApplicationController
 
   private
     def test_process
+      # @test = Test.new(test_params)
+      @test = Test.new 
+      @test.question_total = 0
+      # @quest_answered = {}
+      @test.question_right = 0
+      @test.question_wrong = 0
+      @fquestion = Question.medium.sample
+      until @test.question_total == 10
+        # @fquestion = Question.medium.sample
+        if @test.us_answer1 == @fquestion.corr_1 && @test.us_answer2 == @fquestion.corr_2 && @test.us_answer3 == @fquestion.corr_3 && @test.us_answer4 == @fquestion.corr_4 && @test.us_answer5 == @fquestion.corr_5
+          # correct answer
+          @test.question_right += 1
+          if @fquestion.difficulties == :medium
+            @fquestion = Question.hard.sample
+          elsif @fquestion.difficulties == :hard
+            @fquestion = Question.very_hard.sample
+          end
+        else 
+          # wrong answer
+          @test.question_wrong += 1
+          if @fquestion.difficulties == :medium
+          @fquestion = Question.easy.sample
+          end
+        end
+        @test.question_total += 1  
+      end 
     end
+
     def test_params
       params.require(:test).permit(:question_total,
         :question_right,
